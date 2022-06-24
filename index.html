@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ru">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Вариант 10 Шишенко</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            margin: 0;
+        }
+
+        header {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            background-color: aliceblue;
+            border-color: lightblue;
+            border-style: solid;
+            padding: 0 15px;
+        }
+
+        footer {
+            position: absolute;
+            bottom: 0;
+            left: 15px;
+            font-weight: bold;
+        }
+
+        .modalButtonC {
+            width: 150px;
+            height: 50px;
+            font-size: 16px;
+            border-color: #2a921f;
+            box-shadow: 0 0 5px 1px #2a921f;
+        }
+
+        .formBG {
+            position: fixed;
+            z-index: 1;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: #00000050;
+            flex: 1 0 auto;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: all ease .5s;
+        }
+
+        .FormC {
+            background-color: white;
+            width: 300px;
+            height: auto;
+            margin: auto;
+            text-align: center;
+            border-style: solid;
+            box-shadow: 0 0 5px 1px #2a921f;
+        }
+
+        form {
+            margin: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Вариант 9 Шишенко Валерий</h1>
+        <button id="modalButton" class="modalButtonC">Открыть форму</button>
+    </header>
+    <div id="modalForm" class="formBG">
+        <div class="FormC">
+            <form method="post" action="/download">
+                <label>Имя профиля</label><br>
+                <input type="text" name="ProfileName" required /><br><br>
+
+                <label>Версия</label><br>
+                <select name="Version">
+                    <option disabled selected value="None">Выберите версию ICC</option>
+                    <option value="v2">v2</option>
+                    <option value="v4">v4</option>
+                    <option value="max">max</option>
+                </select><br><br>
+
+                <label>Адаптации включены<input type="checkbox" checked name="adaptations" /></label><br><br>
+
+                <label>Количество измеренных образцов</label><br>
+                <input type="number" name="samplesN" /><br><br>
+
+                <input id="SendButton" type="submit">
+                <button type="button" id="CloseButton">Закрыть</button>
+            </form>
+        </div>
+    </div>
+    <footer>
+        <p>Шишенко Валерий Сергеевич, 201-324</p>
+    </footer>
+    <script>
+        let modalF = document.getElementById("modalForm");
+        document.getElementById("modalButton").onclick = function () {
+            document.getElementById("modalForm").style.opacity = "1";
+            document.getElementById("modalForm").style.visibility = "visible";
+            document.getElementById("modalForm").style.pointerEvents = "auto";
+            document.getElementById("modalForm").style.transition = "all ease .5s";
+            document.body.style.overflow = 'hidden';
+        }
+        document.getElementById("CloseButton").onclick = function () {
+            document.getElementById("modalForm").style.opacity = "0";
+            document.getElementById("modalForm").style.visibility = "hidden";
+            document.getElementById("modalForm").style.pointerEvents = "none";
+            document.getElementById("modalForm").style.transition = "all ease .5s";
+            return false;
+        }
+        modalF.onclick = function (e) {
+            if (e && e.target == modalF) {
+                document.getElementById("modalForm").style.opacity = "0";
+                document.getElementById("modalForm").style.visibility = "hidden";
+                document.getElementById("modalForm").style.pointerEvents = "none";
+                document.getElementById("modalForm").style.transition = "all ease .5s";
+                return false;
+            }
+        };
+    </script>
+</body>
+
+</html>
